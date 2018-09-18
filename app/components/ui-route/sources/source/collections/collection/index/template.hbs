@@ -1,0 +1,14 @@
+{{#app-section}}
+  {{#each groups.content as |group|}}
+    {{app-row icon='collection' value=(concat '#' group.data.identifier) action=(action 'group' group)}}
+  {{else}}
+    {{app-row icon='error' value='No images uploaded yet'}}
+  {{/each}}
+{{/app-section}}
+
+{{#if (has-permission 'admin')}}
+  {{#app-section}}
+    {{app-row icon='admin' value=(l 'Edit collection') action=(action 'edit')}}
+    {{app-row icon='admin' value=(l 'Upload images') action=(action 'upload')}}
+  {{/app-section}}
+{{/if}}

@@ -1,0 +1,36 @@
+{{#app-section}}
+
+  {{#if user.isLoading}}
+
+    {{app-row icon='roles' value=(l 'Loading…')}}
+
+  {{else}}
+
+    {{#if user.exists}}
+
+      {{#if user.roles}}
+
+        {{#app-row icon='roles'}}
+          {{app-span value=(l 'Roles') class='key'}}
+          {{#app-span class='value comma-list padded'}}{{#each user.roles as |role|}}{{app-span value=(l role) class="item"}}{{/each}}{{/app-span}}
+        {{/app-row}}
+
+      {{else}}
+        {{app-row icon='error' value=(l "Sorry, you're not allowed to access this app.")}}
+      {{/if}}
+
+    {{else}}
+      {{app-row icon='error' value=(l 'Loading…')}}
+    {{/if}}
+
+  {{/if}}
+
+  {{app-row icon='log-out' value=(l 'Sign out') action=(action 'logout')}}
+
+{{/app-section}}
+
+{{#if user.isAdmin}}
+  {{#app-section title='Administration'}}
+    {{app-row icon='admin' value=(l 'Users') action=(action 'users')}}
+  {{/app-section}}
+{{/if}}

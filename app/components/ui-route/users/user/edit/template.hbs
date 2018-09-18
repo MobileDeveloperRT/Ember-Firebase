@@ -1,0 +1,29 @@
+{{#app-section}}
+  {{app-row value=user.data.email}}
+{{/app-section}}
+
+{{#app-section}}
+  {{#app-block}}
+    {{app-input
+        label=(l 'Name')
+        value=user.data.displayName
+        update=(action (mut user.data.displayName))
+        disabled=user.isSaving
+    }}
+  {{/app-block}}
+{{/app-section}}
+
+{{#app-section}}
+{{#each roles as |object|}}
+  {{#app-row}}
+    {{ui-checkbox value=object.checked update=(action 'updateRole' object)}}
+    {{object.role}}
+  {{/app-row}}
+{{/each}}
+{{/app-section}}
+
+{{#app-section}}
+  {{#app-block}}
+    {{app-button label=(l 'Update') disabled=user.isSaving action=(action 'save')}}
+  {{/app-block}}
+{{/app-section}}

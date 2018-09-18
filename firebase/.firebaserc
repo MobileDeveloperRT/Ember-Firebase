@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "production": "index65-prod",
+    "development": "index65-dev",
+    "test": "index65-test"
+  }
+}

@@ -1,0 +1,22 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function hasRole(name) {
+      return name in request.auth.token.roles;
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    match /images/{source}/{collection}/{group}/{image}/original {
+      allow read;
+      allow write: if isSignedIn() && isAdmin();
+    }
+
+  }
+}

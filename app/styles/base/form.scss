@@ -1,0 +1,62 @@
+.app-form {
+  width: 300px;
+  margin-bottom: 20px;
+  &.wide {
+    width: 100%;
+    max-width: 1024px;
+  }
+  @include mobile {
+    width: 100%;
+  }
+}
+
+@mixin base-input() {
+  -webkit-appearance: none;
+  font-family: $font-family;
+  outline: none;
+  border-radius: 2px;
+}
+
+input[type='text'],
+input[type='password'] {
+  @include base-input();
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  font-size: 17px;
+  padding: 11px 10px 10px 10px;
+  &.narrow {
+    width: 300px;
+    // @media @mobile, @tablet {
+    //   width: 100%;
+    // }
+  }
+}
+
+@mixin button() {
+  @include base-input();
+  font-size: 15px;
+  line-height: normal;
+  padding: 12px 15px 10px 15px;
+  border: 1px solid lighten(#ddd, 3%);
+  background: lighten(#ddd, 5%);
+}
+
+button,
+input[type='submit'],
+input[type='button'] {
+  @include button;
+  // @media @mobile, @tablet {
+  //   width: 100%;
+  //   margin-bottom: 5px;
+  // }
+  &.secondary {
+    border: 1px solid lighten(#ddd, 8%);
+    background: lighten(#ddd, 10%);
+  }
+}
+
+input[type='checkbox'] {
+  font-size: 18px;
+}
